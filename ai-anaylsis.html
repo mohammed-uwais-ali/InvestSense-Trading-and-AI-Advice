@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .message {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .user {
+            background-color: purple;
+            color: white;
+            text-align: right;
+        }
+        .ai {
+            background-color: #f8f9fa;
+            color: black;
+        }
+        .more-info-btn {
+            background-color: orange;
+            color: white;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Analysis</h1>
+        <button class="btn btn-primary" onclick="window.location.href='/dashboard'">Back</button>
+        <div id="chatBox" style="height:70%;overflow:auto;">
+            <!-- Portfolio Analysis goes here -->
+            {% for stock in stocks %}
+                <div class='message user'>
+                    <b>{{ stock.name }} ({{ stock.percentage }}% of portfolio):</b> 
+                    <p>{{ stock.description }}</p>
+                </div>
+                <div class='message ai'>
+                    <b>AI:</b> 
+                    <button type="button" class="btn more-info-btn" data-toggle="collapse" data-target="#moreInfo{{ loop.index }}">More</button>
+                    <div id="moreInfo{{ loop.index }}" class="collapse">
+                        <div class="card card-body">
+                            {% block scripts %}
+                            <script>
+                                $(document).ready(function () {
+                                    $('.more-info-btn').click(function () {
+                                        var stockName = $(this).prev('.stock-info').find('h3').text().split(' ')[0];
+                                        var moreInfoDiv = $(this).next('.collapse').find('.card-body');
+                                        $.post('/get_more_info', { stock_name: stockName }, function (data) {
+                                            moreInfoDiv.text(data.more_info);
+                                        });
+                                    });
+                                });
+                            </script>
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Advice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .message {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .user {
+            background-color: purple;
+            color: white;
+            text-align: right;
+        }
+        .ai {
+            background-color: #f8f9fa;
+            color: black;
+        }
+        .input-area {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Advice</h1>
+        <button class="btn btn-primary" onclick="window.location.href='/dashboard'">Back</button>
+        <div id="chatBox" style="height:70%;overflow:auto;">
+            <!-- Initial AI message goes here -->
+            <div class='message ai'><b>AI:</b> {{ initial_ai_message }}</div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="userInput" class="form-control" style="width:80%; display: inline;" placeholder="Send a message...">
+            <button class="btn btn-primary" style="background-color: purple;" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        var chatHistory = 'AI: ' + '{{ initial_ai_message }}' + '\n';
+        function sendMessage() {
+            var userInput = document.getElementById('userInput').value;
+            chatHistory += 'User: ' + userInput + '\n';
+            $.post("/get_advice", {message: userInput, chat_history: chatHistory}, function(data) {
+                var chatBox = document.getElementById('chatBox');
+                chatBox.innerHTML += "<div class='message user'><b>You:</b> " + userInput + "</div>";
+                chatBox.innerHTML += "<div class='message ai'><b>AI:</b> " + data.ai_message + "</div>";
+                chatHistory += 'AI: ' + data.ai_message + '\n';
+                chatBox.scrollTop = chatBox.scrollHeight;
+                document.getElementById('userInput').value = '';
+            });
+        }
+    </script>
+</body>
+</html>
