@@ -13,6 +13,11 @@ Chat with AI Assistant to receive advice:
 
 <img width="429" alt="Screen Shot 2023-07-16 at 2 40 51 AM" src="https://github.com/mohammed-uwais-ali/InvestSense-Trading-and-AI-Advice/assets/96762901/e8edd056-7777-40d6-bfcb-145259c366cf">
 
+Get a quick summary of your stocks performance with indepth market analysis:
+
+<img width="1174" alt="image" src="https://github.com/mohammed-uwais-ali/InvestSense-Trading-and-AI-Advice/assets/96762901/0d5df99d-c1b1-4fda-ab44-2dd1cd1feb6d">
+
+
 View your stocks on the platform:
 
 <img width="864" alt="Screen Shot 2023-07-16 at 2 40 17 AM" src="https://github.com/mohammed-uwais-ali/InvestSense-Trading-and-AI-Advice/assets/96762901/b32643f5-ffe2-4c5c-ab74-0079fba4b769">
