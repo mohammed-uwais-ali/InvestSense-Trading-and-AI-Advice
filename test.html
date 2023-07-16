@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <!-- Portfolio value chart goes here -->
+        <canvas id="portfolioChart"></canvas>
+        <script>
+            var ctx = document.getElementById('portfolioChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: {{ dates|tojson|safe }},  // Dates from Python code
+                    datasets: [{
+                        label: 'Portfolio Value',
+                        data: {{ values|tojson|safe }},  // Values from Python code
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Value'
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-primary btn-lg btn-block">AI Advice</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary btn-lg btn-block">AI Analysis</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>Current Holdings</h2>
+                <ul>
+                    {% for holding in holdings %}
+                        <li>{{ holding }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col">
+                <h2>Recent Transactions</h2>
+                <ul>
+                    {% for transaction in transactions %}
+                        <li>{{ transaction }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

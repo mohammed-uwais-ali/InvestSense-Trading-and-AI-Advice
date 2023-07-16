@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Portfolio</title>
+</head>
+<body>
+    <h1>Stock Portfolio</h1>
+    <h2>Portfolio value: ${{ total_value }}</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Quantity</th>
+                <th>Value</th>
+                <th>Percent Change</th>
+                <th>Equity Change</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>ID</th>
+                <th>P/E Ratio</th>
+                <th>Portfolio Percentage</th>
+                <th>Average Buy Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in portfolio %}
+                <tr>
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.quantity }}</td>
+                    <td>{{ stock.value }}</td>
+                    <td>{{ stock.percent_change }}</td>
+                    <td>{{ stock.equity_change }}</td>
+                    <td>{{ stock.type }}</td>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ stock.id }}</td>
+                    <td>{{ stock.pe_ratio }}</td>
+                    <td>{{ stock.portfolio_percentage }}</td>
+                    <td>{{ stock.average_buy_price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
