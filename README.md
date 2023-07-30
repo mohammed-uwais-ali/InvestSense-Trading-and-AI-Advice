@@ -1,6 +1,8 @@
 # InvestSense-Trading-and-AI-Advice
 Hi there, we created a full stack development project: a trading platform with AI integrated within it to provide users with advice and analysis. From the technological side, we used python, flask framework to set up the website, connected with Robinhood and Ameritrade API,  connected with OpenAI's GPT API, and relied on SQLAlchemy's database to store the valuable info to allow users to quick reference it.
 
+**Available on both desktop and mobile responsive as well**
+
 Home page, introducing users
 <img width="1440" alt="image" src="https://github.com/mohammed-uwais-ali/InvestSense-Trading-and-AI-Advice/assets/96762901/c577fee1-9a06-4b83-80d5-532e1394e37e">
 
